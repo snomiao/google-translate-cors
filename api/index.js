@@ -1,3 +1,4 @@
+// import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { createProxyMiddleware } from "http-proxy-middleware";
 
 const apiProxy = createProxyMiddleware({
@@ -5,7 +6,6 @@ const apiProxy = createProxyMiddleware({
   changeOrigin: true,
   pathRewrite: {
     "^/api\\?url=https?://translate.google.com": "", // remove base path
-    ["^/api\\?url=" + encodeURIComponent("https://translate.google.com")]: "", // remove base path
   },
   changeOrigin: true,
   onProxyRes: (proxyRes, req, res) => {
@@ -15,7 +15,8 @@ const apiProxy = createProxyMiddleware({
 
 // Expose the proxy on the "/api" endpoint.
 export default function (req, res) {
-  req.url = "/api?" + new URLSearchParams(req.query);
+  req.url = "/api?url=" + req.query.url;
+  console.error(req.url)
   const r = apiProxy(req, res);
   return r;
 }
