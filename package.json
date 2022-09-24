@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
+    "start": "vercel dev",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,6 +20,9 @@
   },
   "homepage": "https://github.com/snomiao/google-translate-cors#readme",
   "dependencies": {
-    "cors-anywhere": "^0.4.4"
+    "http-proxy-middleware": "^2.0.6"
+  },
+  "devDependencies": {
+    "vercel": "^28.4.2"
   }
 }
