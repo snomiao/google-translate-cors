@@ -4,7 +4,7 @@ const apiProxy = createProxyMiddleware({
   target: "https://translate.google.com",
   changeOrigin: true,
   pathRewrite: {
-    "^/api?url=https://translate.google.com/": "/", // remove base path
+    "^/api?url=https://translate.google.com": "", // remove base path
   },
   changeOrigin: true,
   onProxyRes: (proxyRes) => {
