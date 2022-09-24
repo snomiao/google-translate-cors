@@ -23,6 +23,7 @@
     "http-proxy-middleware": "^2.0.6"
   },
   "devDependencies": {
+    "next": "^12.3.1",
     "vercel": "^28.4.2"
   }
 }

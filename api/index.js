@@ -7,13 +7,17 @@ const apiProxy = createProxyMiddleware({
     "^/api?url=https://translate.google.com": "", // remove base path
   },
   changeOrigin: true,
-  onProxyRes: (proxyRes) => {
+  onProxyReq: (proxyReq, req, res) => {
+    proxyReq.req.url;
+  },
+  onProxyRes: (proxyRes, req, res) => {
     proxyRes.headers["Access-Control-Allow-Origin"] = "*"; // add new header to response
   },
 });
 
 // Expose the proxy on the "/api/*" endpoint.
 export default function (req, res) {
+  req.url = "/api?=" + req.query.url;
   const r = apiProxy(req, res);
   console.error(req);
   return r;
