@@ -14,7 +14,7 @@ const apiProxy = createProxyMiddleware({
 
 // Expose the proxy on the "/api" endpoint.
 export default function (req, res) {
-  req.url = "/api?url=" + req.query.url;
+  req.url = "/api?" + new URLSearchParams(req.query);
   const r = apiProxy(req, res);
   return r;
 }
